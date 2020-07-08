@@ -1,0 +1,44 @@
+sqlitedb  => List = [Piechart.data ...] => render
+total_times_visited
+total_time_spent
+
+open new window with scrolling with all of the sqlite querie results given a url
+Getting url home site number of views
+
+for list:
+    get split_url[1], number_views
+    key = split_url[1]
+    if key exists:
+        val = dict[key]
+        dict[key] = val + number_views
+
+obj_list
+for key, val:
+    obj new_obj = new obj(key, val)
+    obj.add(new_obj)
+
+get input => input.toString => search in HashMap => get all sites => show sites in different window
+datastruct
+
+{"google.com": [{"/data/test", 19}, {"/data/test": 20}] , "facebook.com": ....}
+
+def createobjectlist():
+    List<Labelobj> objList = new ArrayList<>();
+    for dict in list:
+        val = dict.values()
+        key = dict.keys()
+        String s = key + " " + val
+        Label tempLabel = new Label(s)
+        List.add(templabel)
+    return objList
+
+
+def loadingLabels(List<label> labelist, stackpane sobj):
+    for label in labelist:
+        label.format
+        sobj.add(label)
+    return sobj
+
+Random links:
+https://stackoverflow.com/questions/36402056/google-chrome-how-to-find-out-the-name-of-transition-from-its-id-in-history-sql\
+https://stackoverflow.com/questions/61253276/time-spent-on-each-chrome-tab-website-from-data-stored-in-history-sqlite
