@@ -55,36 +55,7 @@ public class Main extends Application {
                 new ChangeListener<String>() {
                     @Override
                     public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-                        List<DataBaseContainer> ListContainer = null;
-                        try {
-                            ListContainer = connect.Connect();
-                        } catch (SQLException throwables) {
-                            throwables.printStackTrace();
-                        }
-                        List<HashMap<String, Integer>> urlViewLists = DatabaseParser.getResults(t1, ListContainer);
-
-                        if (urlViewLists != null) {
-                            List<String> stringUrlList = Labels.createStringForLabel(urlViewLists);
-                            List<Label> labellist = Labels.createLabel(stringUrlList);
-                            ScrollPane sp = new ScrollPane();
-                            GridPane secondaryLayout = new GridPane();
-                            sp.setContent(secondaryLayout);
-                            secondaryLayout = Labels.loadLabels(labellist, secondaryLayout);
-
-
-                            Scene secondScene = new Scene(secondaryLayout, 230, 100);
-
-                            // New window (Stage)
-                            Stage newWindow = new Stage();
-                            newWindow.setTitle("Results in " + t1);
-                            newWindow.setScene(secondScene);
-
-                            // Set position of second window, related to primary window.
-                            newWindow.setX(primaryStage.getX() + 200);
-                            newWindow.setY(primaryStage.getY() + 100);
-
-                            newWindow.show();
-                        }
+                        listenerMethod(t1, primaryStage);
                     }
                 }
         );
@@ -98,6 +69,40 @@ public class Main extends Application {
         grid.add(chart, 5, 1);
         primaryStage.show();
 
+    }
+
+    private void listenerMethod(String t1, Stage primaryStage) {
+        List<DataBaseContainer> ListContainer;
+        ListContainer = null;
+        try {
+            ListContainer = connect.Connect();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        List<HashMap<String, Integer>> urlViewLists = DatabaseParser.getResults(t1, ListContainer);
+
+        if (urlViewLists != null) {
+            List<String> stringUrlList = Labels.createStringForLabel(urlViewLists);
+            List<Label> labellist = Labels.createLabel(stringUrlList);
+            ScrollPane sp = new ScrollPane();
+            GridPane secondaryLayout = new GridPane();
+            sp.setContent(secondaryLayout);
+            Labels.loadLabels(labellist, secondaryLayout);
+
+
+            Scene secondScene = new Scene(secondaryLayout, 230, 100);
+
+            // New window (Stage)
+            Stage newWindow = new Stage();
+            newWindow.setTitle("Results in " + t1);
+            newWindow.setScene(secondScene);
+
+            // Set position of second window, related to primary window.
+            newWindow.setX(primaryStage.getX() + 200);
+            newWindow.setY(primaryStage.getY() + 100);
+
+            newWindow.show();
+        }
     }
 
 
